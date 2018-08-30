@@ -1,5 +1,6 @@
 import hashlib, binascii
 import random
+import DateTime
 #python program 
 
 '''
@@ -99,7 +100,11 @@ if __name__ == __main__:
           ''')
           
           node = Node()
-          node.set
+          node.set_timeStamp(DateTime.date())
+          node.set_data(data)
+          node.set_node_number(node_number+=1)
+          node.set_node_id(''.join(str(data)+str(random.rand(1,100))))
+          node.HASH_VALUE = Util().hash(node.get_timestamp, node.get_data, node.get_node_number)
     
     
   elif submit == 2:
@@ -107,6 +112,7 @@ if __name__ == __main__:
   else :
     print "Wrong input"
     exit()
+   
  elif option == 2:
   exit()
   
