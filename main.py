@@ -9,6 +9,23 @@ which will be part of node.
 '''
 owner_id = []
 node_number = 0
+'''
+This is the data class which stores info about data
+such as value of the data , owner id who created the data 
+and name of the owner.
+This class contains getter and setters for the values required 
+by the data class
+
+HOW IT WORKS
+
+when user create the data we will internally create the
+unique id for the user and associate this data with that
+user.
+now we have UTILL class which contains the hash algorithm
+using this hash algorithm we will create the key for the data
+and store in the data obj as well as we will as user to store that hash value
+which will req. in the authenticating the user
+'''
 class Data:
   HASH_VALUE = ''
   
@@ -30,6 +47,16 @@ class Data:
   def get_owner_name(self):
     return self.name
   
+'''
+This is the Node class which contains the req. fields of the node
+such as node id dataobj ref to parent and genius id etc
+
+it will also use the hash function and store hash vlaue
+now again when we have to authenticate the user we will 
+collect info from the user and again hash that info and
+if the HASH_VALUE and calculated hash matches
+user is authenticated
+'''
   
     
 class Node:
@@ -58,7 +85,13 @@ class Node:
     
   def set_genesis_ref_node_id(self, id):
     self.genesis_id = id
+
+  '''
+  This is Utility class which contains the utility
+  function hashing
   
+  This hash function use the PBKDF2_HAMC algorithm salted with salt and round 100000 with SHA256
+  '''
 class Util:
   def hash(self, *args, **kwargs):
     pass = b''
@@ -71,7 +104,9 @@ class Util:
     dk = hashlib.pbkdf2_hmac('sha256', pass, r, 100000)
     return binascii.hexlify(dk)
     
-    
+ '''
+ THis is main which collects the data from user and work accordingly
+ '''
 if __name__ == __main__:
   option = input('''select from the following options\n
   1.) create Data\n
